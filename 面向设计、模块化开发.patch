@@ -1,0 +1,171 @@
+Index: dayone/test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dayone/test.py	(date 1561537315462)
++++ dayone/test.py	(date 1561537315462)
+@@ -0,0 +1,46 @@
++import random
++
++print(random.randint(1,5))
++
++
++def add(x, y):
++    return x + y
++
++
++class Father():
++    # 双下划线开始，结束的函数和属性，都是系统已经定义好的特殊属性和方法
++    # 特殊方法：在特定场景自动调用
++    # __init__用来初始化对象的属性，因此在创建对象时自动调用
++    def __init__(self, name):
++        print('__init__', id(self))
++        # self代表当前对象
++        self._name = name
++
++    def __del__(self):
++        # 此方法会在对象销毁时自动执行
++        print('__del__')
++
++    def _show(self):
++        print('name', self._name)
++
++
++f = Father('徐志强')
++print(f, id(f))
++f._show()
++
++
++# 默认子类可以调用父类的属性和方法
++# python 属性和方法如果是单下划线表示保护，双下划线表示私有（子类不可调用）
++class Son(Father):
++    def __init__(self, name, age):
++        print('__init__', id(self))
++        # self代表当前对象
++        super().__init__(name)
++        self.age = age
++
++    def _show(self):
++        print(f'name:{self._name},age:{self.age}')
++
++
++s = Son('强仔', 18)
++s._show()
+Index: run/runtest.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- run/runtest.py	(date 1561538442514)
++++ run/runtest.py	(date 1561538442514)
+@@ -0,0 +1,11 @@
++# import sys
++
++# for i in sys.path:
++#    print(i)
++
++import dayone.test as d
++
++print(d.add(1, 2))
++d = d.Son('志强', 17)
++d._show()
++# input("")
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1561598777255)
++++ .idea/vcs.xml	(date 1561598777255)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: dayone/__init__.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dayone/__init__.py	(date 1561534415678)
++++ dayone/__init__.py	(date 1561534415678)
+@@ -0,0 +1,0 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1561533950967)
++++ .idea/misc.xml	(date 1561533950967)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="JavaScriptSettings">
++    <option name="languageLevel" value="ES6" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (2)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: run/__init__.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- run/__init__.py	(date 1561537221884)
++++ run/__init__.py	(date 1561537221884)
+@@ -0,0 +1,0 @@
+Index: .idea/xzq_01.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/xzq_01.iml	(date 1561533969327)
++++ .idea/xzq_01.iml	(date 1561533969327)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="TestRunnerService">
++    <option name="projectConfiguration" value="pytest" />
++    <option name="PROJECT_TEST_RUNNER" value="pytest" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(date 1561533947803)
++++ .idea/modules.xml	(date 1561533947803)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/xzq_01.iml" filepath="$PROJECT_DIR$/.idea/xzq_01.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(date 1561533947784)
++++ .idea/encodings.xml	(date 1561533947784)
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
++</project>
+\ No newline at end of file
